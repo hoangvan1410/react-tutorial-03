@@ -1,13 +1,58 @@
-export function ItemEdit() {
+import React, { Component } from 'react';
+interface ItemProps {
+    key:any
+    item:any
+    index:any
+    handleShowAlert:any
+    handleEditItem:any
+  }
+const TodoItem = (props:ItemProps) => {
+    let {item,index} = props;
+
+        if(item === 0) {
+            return (
+                <tr>
+                    <td  className="text-center">  
+                        <h4>No Item</h4>
+                    </td>
+                </tr>
+            )
+        }
+
+
+        let classNameLabel = '';
+        let nameLabel = '';
+        switch (item.level) {
+            case 1:
+                classNameLabel = 'label label-warning';
+                nameLabel = 'Medium';
+                break;
+            case 2:
+                classNameLabel = 'label label-danger';
+                nameLabel = 'High';
+                break;
+            default:
+                classNameLabel = 'label label-info';
+                nameLabel = 'Low';
+                break;
+        }
     return (
         <tr>
-            <td className="text-center">1</td>
-            <td>Tìm thấy mảnh vỡ máy bay rơi ở Iran làm 66 người chết</td>
-            <td className="text-center"><span className="label label-danger">High</span></td>
-            <td>
-                <button type="button" className="btn btn-warning btn-sm">Edit</button>
-                <button type="button" className="btn btn-danger btn-sm">Delete</button>
-            </td>
-        </tr>
+        <td className="text-center">
+            {index}
+        </td>
+        <td>
+            {item.name}
+        </td>
+        <td className="text-center">
+            <span className={classNameLabel}>{nameLabel}</span>
+        </td>
+        <td>
+            {/* <button type="button" className="btn btn-warning btn-sm" onClick={()=>props.handleEditItem(index,item)}>Edit</button>
+            <button type="button" className="btn btn-danger btn-sm"  onClick={()=>props.handleShowAlert(item)}>Delete</button> */}
+        </td>
+    </tr>
     )
 }
+
+export default TodoItem;
